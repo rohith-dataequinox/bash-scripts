@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo -e "\n~~~ Script for starting and stopping Redis and Rabbit MQ ~~~\n"
+
+containers=("83adafa9ae88" "93c7d10b23be")
+
+if [[ $1 == "start" || $1 == "stop" ]]
+then
+	for con in ${containers[@]};
+	do
+		docker $1 $con
+		exit_status=$?
+
+		if [ $exit_status -eq 0 ]
+		then
+			echo "Docker $1 $con: Success"
+		else
+			echo "Docker $1 $con: Failed with exit status $exit_status"
+		fi
+	done
+else
+	echo "wrong argument"
+fi
+
