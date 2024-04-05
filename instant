@@ -1,0 +1,6 @@
+#!/bin/bash
+
+brave-browser --app="https://instagram.com/$1" &
+sleep 9 
+maim -i $(xdotool getactivewindow) ~/ss/$(uuidgen | cut -d '-' -f1).jpg
+pkill brave
